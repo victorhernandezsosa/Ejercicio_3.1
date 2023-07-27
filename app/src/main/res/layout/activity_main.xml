@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textColor="@color/white"
         android:fontFamily="serif-monospace"
-        android:textStyle="bold"
         android:text="FIREBASE"
+        android:textColor="@color/white"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,8 +29,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
-        android:inputType="number"
-        android:hint="Numero de cuenta"
+        android:hint="Foro"
+        android:inputType="text"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,8 +44,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Nombre"
+        android:inputType="text"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,8 +59,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="Apellido"
+        android:inputType="text"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,22 +79,19 @@
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtapellido" />
+        app:layout_constraintTop_toBottomOf="@+id/txtfecha" />
 
-    <Button
-        android:id="@+id/btnedit"
-        android:layout_width="306dp"
-        android:layout_height="46dp"
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="256dp"
+        android:layout_height="132dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/btnbackground"
-        android:textColor="@color/white"
-        android:text="Editar"
-        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnagregar" />
+        app:layout_constraintTop_toBottomOf="@+id/btndelete" />
 
     <Button
         android:id="@+id/btndelete"
@@ -104,19 +101,54 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/btnbackground"
-        android:textColor="@color/white"
         android:text="Eliminar"
+        android:textColor="@color/white"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnedit" />
 
-    <ListView
-        android:id="@+id/listview"
-        android:layout_width="335dp"
-        android:layout_height="246dp"
-        android:layout_marginTop="12dp"
+    <Button
+        android:id="@+id/btnedit"
+        android:layout_width="306dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/btnbackground"
+        android:text="Editar"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnagregar" />
+
+    <Spinner
+        android:id="@+id/genero"
+        android:layout_width="301dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:entries="@array/Gen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btndelete" />
+        app:layout_constraintTop_toBottomOf="@+id/txtapellido" />
+
+    <EditText
+        android:id="@+id/txtfecha"
+        android:layout_width="307dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:ems="10"
+        android:hint="Fecha de Nacimiento"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/genero" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

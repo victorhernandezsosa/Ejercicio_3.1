@@ -3,15 +3,20 @@ package com.example.ejercicio31;
 public class Contactos {
 
     private String ID;
-    private String Cuenta;
+    private String Foro;
     private String Nombre;
     private String Apellido;
 
-    public Contactos(String ID, String cuenta, String nombre, String apellido) {
+    private String Genero;
+    private String Fecha;
+
+    public Contactos(String ID, String foro, String nombre, String apellido, String genero, String fecha) {
         this.ID = ID;
-        Cuenta = cuenta;
+        Foro = foro;
         Nombre = nombre;
         Apellido = apellido;
+        Genero = genero;
+        Fecha = fecha;
     }
 
     public Contactos() {
@@ -25,12 +30,12 @@ public class Contactos {
         this.ID = ID;
     }
 
-    public String getCuenta() {
-        return Cuenta;
+    public String getForo() {
+        return Foro;
     }
 
-    public void setCuenta(String cuenta) {
-        Cuenta = cuenta;
+    public void setForo(String foro) {
+        Foro = foro;
     }
 
     public String getNombre() {
@@ -47,6 +52,22 @@ public class Contactos {
 
     public void setApellido(String apellido) {
         Apellido = apellido;
+    }
+
+    public String getGenero() {
+        return Genero;
+    }
+
+    public void setGenero(String genero) {
+        Genero = genero;
+    }
+
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String fecha) {
+        Fecha = fecha;
     }
 
     @Override

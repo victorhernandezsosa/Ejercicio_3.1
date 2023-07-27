@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
@@ -29,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayAdapter<Contactos> adaptercontac;
 
-    EditText txtnombre, txtapellido,txtcuenta;
+    EditText txtnombre, txtapellido,txtcuenta, txtfecha;
+
+    Spinner genero;
 
     Button btnagregar,btnedit,btndelete;
 
@@ -49,9 +52,11 @@ public class MainActivity extends AppCompatActivity {
         txtnombre = findViewById(R.id.txtnombre);
         txtapellido = findViewById(R.id.txtapellido);
         txtcuenta = findViewById(R.id.txtcuenta);
+        txtfecha = findViewById(R.id.txtfecha);
         btnagregar = findViewById(R.id.btnagregar);
         btndelete = findViewById(R.id.btndelete);
         btnedit = findViewById(R.id.btnedit);
+        genero = findViewById(R.id.genero);
         listView = findViewById(R.id.listview);
 
         firebase();
@@ -61,9 +66,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 contactoseleccionado=(Contactos) parent.getItemAtPosition(position);
-                txtcuenta.setText(contactoseleccionado.getCuenta());
+                txtcuenta.setText(contactoseleccionado.getForo());
                 txtnombre.setText(contactoseleccionado.getNombre());
                 txtapellido.setText(contactoseleccionado.getApellido());
+                txtfecha.setText(contactoseleccionado.getFecha());
+                int index = obtenergenero(contactoseleccionado.getGenero());
+
+                genero.setSelection(index);
             }
         });
 
@@ -90,6 +99,22 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private int obtenergenero(String generosel) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.Gen, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genero.setAdapter(adapter);
+
+        int count = adapter.getCount();
+        for (int i = 0; i < count; i++) {
+            if (adapter.getItem(i).equals(generosel)) {
+                return i;
+            }
+        }
+
+        return 0;
+    }
+
+
     private void borrar() {
         if (contactoseleccionado != null) {
             Contactos contac = new Contactos();
@@ -111,9 +136,11 @@ public class MainActivity extends AppCompatActivity {
 
         Contactos contac = new Contactos();
         contac.setID(contactoseleccionado.getID());
-        contac.setCuenta(txtcuenta.getText().toString().trim());
+        contac.setForo(txtcuenta.getText().toString().trim());
         contac.setNombre(txtnombre.getText().toString().trim());
         contac.setApellido(txtapellido.getText().toString().trim());
+        contac.setFecha(txtfecha.getText().toString().trim());
+        contac.setGenero(genero.getSelectedItem().toString());
         databaseReference.child("Contactos").child(contac.getID()).setValue(contac);
         Toast.makeText(this,"Los datos se han actualizado correctamente", Toast.LENGTH_LONG).show();
 
@@ -125,15 +152,19 @@ public class MainActivity extends AppCompatActivity {
         String cuenta = txtcuenta.getText().toString();
         String nombre = txtnombre.getText().toString();
         String apellido = txtapellido.getText().toString();
+        String fecha = txtfecha.getText().toString();
+        String gen = genero.getSelectedItem().toString();
 
-        if (cuenta.isEmpty() || nombre.isEmpty() || apellido.isEmpty()){
+        if (cuenta.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || fecha.isEmpty()){
             validar();
         }else {
             Contactos contac = new Contactos();
             contac.setID(UUID.randomUUID().toString());
-            contac.setCuenta(cuenta);
+            contac.setForo(cuenta);
             contac.setNombre(nombre);
             contac.setApellido(apellido);
+            contac.setFecha(fecha);
+            contac.setGenero(gen);
 
             databaseReference.child("Contactos").child(contac.getID()).setValue(contac);
             Toast.makeText(this,"Los datos se agregaron correctamente", Toast.LENGTH_LONG).show();
@@ -146,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
         txtcuenta.setText("");
         txtnombre.setText("");
         txtapellido.setText("");
+        txtfecha.setText("");
     }
 
     private void validar() {
@@ -153,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
         String cuenta = txtcuenta.getText().toString();
         String nombre = txtnombre.getText().toString();
         String apellido = txtapellido.getText().toString();
+        String fecha = txtfecha.getText().toString();
 
         if (cuenta.isEmpty()){
             txtcuenta.setError("Campo Vacio");
@@ -160,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
             txtnombre.setError("Campo Vacio");
         } else if (apellido.isEmpty()) {
             txtapellido.setError("Campo Vacio");
+        } else if (fecha.isEmpty()) {
+            txtfecha.setError("Campo Vacio");
         }
     }
 
