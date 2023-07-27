@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1045831542245",
+    "project_id": "tarea-8e749",
+    "storage_bucket": "tarea-8e749.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045831542245:android:e233760bdcd9b06d2dfb0c",
+        "android_client_info": {
+          "package_name": "com.example.ejercicio31"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045831542245-1ic22gbso06tsdt5raq532edho92dlre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa6h814LumTecNcjM_cK4wJp8zKb8lHTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045831542245-1ic22gbso06tsdt5raq532edho92dlre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
